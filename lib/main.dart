@@ -68,7 +68,8 @@ class _CalcState extends State<Calc> {
       if (numController.text.isNotEmpty) {
         firstOperand = int.tryParse(numController.text);
         operator = op;
-        numController.text += " $op ";
+        //numController.text += " $op ";
+        numController.clear();
       }
     });
   }
@@ -92,8 +93,10 @@ class _CalcState extends State<Calc> {
             break;
           case '/':
             result = (secondOperand != 0)
-                ? Functions.divide(firstOperand!, secondOperand).toString()
-                : 'Error: Division by zero';
+                ? Functions.divide(firstOperand!, secondOperand,context).toString()
+                :
+            //'Error: Division by zero';
+            Functions.showError(context);
             break;
           default:
             result = 'Error';
